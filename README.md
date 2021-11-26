@@ -1,30 +1,40 @@
-# Avaliação Sprint 2 - Programa de Bolsas Compass.uol e UFMS
+## Avaliação Sprint 2 - Programa de Bolsas Compass.uol e UFMS
+- Segunda sprint do programa de bolsas Compass.uol para formação em chatbot Rasa.
 
-Segunda sprint do programa de bolsas Compass.uol para formação em chatbot Rasa.
+## Acesso ao app
+- https://harrypotter-jpwakugawa.herokuapp.com/
 
----
+## Harry Potter
+- Criador: João Paulo de Souza Wakugawa.
+- Projeto: Desenvolver um site que mostre diversos personagens de Harry Potter em um loop infinito permitindo que o usuário escolha a sua casa favorita.
+- Entre no app e veja a magia acontecer.
 
-## Execução
+## Informações
+- API utilizada: http://hp-api.herokuapp.com/api/characters
+- Hospedagem: Heroku & Github
+- Front-end: Html & CSS
+- Back-end: NodeJS  
 
-- Utilizar o trabalho já entregue na Sprint 1 (https://github.com/Compass-pb-rasa-2021-ufms/sprint-1-pb-ufms/);
+## Acesso local
+### Localhost: 3000
+```
+$ git clone
+$ npm install (Deve ser no diretório especificado)
+```
 
-- Armazenar as consultas no MongoDB;
+## Upando no Heroku
+```
+$ heroku login
+$ heroku container:login
+$ heroku create  (Anote o nome do site criado)
+$ docker build -t registry.heroku.com/'nome-do-app-criado'/web . (Não esqueça de especificar o diretório)
+$ docker push registry.heroku.com/'nome-do-app-criado'/web
+$ heroku container:release web -a 'nome-do-app-criado'
+$ heroku open -a 'nome-do-app-criado'
+```
 
-- Criar uma consulta ao histórico armazenado;
-
-- Subir como uma aplicação no Okteto (https://cloud.okteto.com/). Dica: https://okteto.com/docs/samples/node/
-
----
-
-## Entrega
-
-- Aceitar o convite do repositório da sprint-2-pb-ufms;
-
-- Criar uma branch no repositório com o formato nome-sobrenome (Exemplo: daniel-muller);
-
-- Subir o trabalho na branch com um readme.md, documentando detalhes sobre como a avaliação foi desenvolvida e como utilizar o sistema.
-
-- O prazo de entrega é até às 13h do dia 29/11 no repositório do github (https://github.com/Compass-pb-rasa-2021-ufms/sprint-2-pb-ufms).
-
----
----
+## Buildando a imagem
+```
+$ docker build -t 'nome-da-img' . 
+$ docker run -it -p 'porta':3000 'nome-da-img'
+```
