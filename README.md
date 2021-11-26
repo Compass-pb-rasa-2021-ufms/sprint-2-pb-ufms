@@ -38,3 +38,8 @@ $ heroku open -a 'nome-do-app-criado'
 $ docker build -t 'nome-da-img' . 
 $ docker run -it -p 'porta':3000 'nome-da-img'
 ```
+
+## Bibliotecas utilizadas
+- express
+- nodemon
+- cors
