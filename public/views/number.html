@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="/css/number.css" rel="stylesheet" type="text/css" />
+
+    <script>
+      var errorCount = 0;
+
+      function isInt(n) {
+        return n % 1 === 0;
+      }
+      function validadeForm() {
+        var number = document.getElementById("numInput");
+        if (number) {
+          if (errorCount > 2) {
+            number.value = Math.floor(number.value);
+            return true;
+          }
+          if (!isInt(number.value)) {
+            alert("O número informado deve ser um inteiro");
+            return false;
+          }
+        }
+        return true;
+      }
+    </script>
+
+    <title>Numeros</title>
+  </head>
+  <body>
+    <a href="/">Home</a>
+    <div class="container">
+      <h1>Insira um número</h1>
+      <form action="/numero" method="get" onsubmit="validadeForm()">
+        <label for="numInput">Número</label>
+        <input
+          id="numInput"
+          class="enlarge-full"
+          type="number"
+          name="numero"
+          pattern="[0-9]+"
+        /><br />
+        <br />
+        <button type="submit">Enviar</button>
+      </form>
+      <% if(locals.textoEN){ %>
+      <br />
+      <table>
+        <tr>
+          <td>[EN]</td>
+          <td><%= textoEN %></td>
+        </tr>
+        <tr>
+          <td>[PT-BR]</td>
+          <td><%= textoPT %></td>
+        </tr>
+      </table>
+      <% } else if(locals.vazio) { %>
+      <p><%= vazio %></p>
+      <% } %>
+    </div>
+  </body>
+</html>

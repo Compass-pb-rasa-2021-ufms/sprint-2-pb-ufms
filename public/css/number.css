@@ -1,0 +1,58 @@
+div.container {
+  border-radius: 1px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  margin: auto;
+  width: 90%;
+  border: 3px solid black;
+  padding: 16px;
+}
+
+button[type="submit"] {
+  width: 100%;
+  background-color: #04aa6d;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+.enlarge-full {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  background-color: white;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+p {
+  font-size: 16pt;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+tr:hover {
+  background-color: rgba(255, 255, 0, 0.363);
+}
+
+body {
+  background-color: #dce1e3;
+}

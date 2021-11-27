@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="/css/activityform.css" rel="stylesheet" type="text/css" />
+
+    <script>
+      var errorCount = 0;
+      function validadeForm() {
+        var precoMin = document.getElementById("precoMin");
+        var precoMax = document.getElementById("precoMax");
+        var acessMin = document.getElementById("acessMin");
+        var acessMax = document.getElementById("acessMax");
+
+        // verifica se o preço minimo é realmente menor que o preço máximo
+        if (precoMin) {
+          if (precoMax && precoMin.value > precoMax.value) {
+            if (errorCount > 2) {
+              precoMin.value = precoMax.value;
+              return true;
+            }
+            precoMin.focus();
+            errorCount++;
+            alert(
+              "Atenção, o preço mínimo não pode ser maior que o preço máximo"
+            );
+            return false;
+          }
+        }
+
+        // verifica se a acessibilidade mínima é realmente menor que a acessibilidade máxima
+        if (acessMin) {
+          if (acessMax && acessMin.value > acessMax.value) {
+            if (errorCount > 2) {
+              acessMin.value = 0;
+              return true;
+            }
+            acessMin.focus();
+            errorCount++;
+            alert(
+              "Atenção, a acessibilidade mínima não pode ser maior que a acessibilidade máxima"
+            );
+            return false;
+          }
+        }
+        return true;
+      }
+    </script>
+  </head>
+  <body>
+    <a href="/">Home</a>
+
+    <div id="divform" class="container">
+      <form action="/atividade" method="get">
+        <h2 class="ajust-padding-margin">
+          Encontre uma atividade aleatoriamente
+        </h2>
+        <input
+          class="enlarge-full btnSearch-color"
+          type="submit"
+          id="btnSearch"
+          value="Estou com sorte"
+        />
+      </form>
+    </div>
+    <br />
+    <h2 class="center-text ajust-padding-margin">OU</h2>
+    <br />
+
+    <div id="divform" class="container">
+      <h2 class="ajust-padding-margin">
+        Encontre uma atividade de acordo com seus parâmetros
+      </h2>
+      <form action="/atividade" method="get" onsubmit="return validadeForm();">
+        <!-- Tipo de um atividade -->
+        <label for="tipos">Escolha um tipo de atividade:</label>
+        <select class="enlarge-full" id="tipos" name="tipos">
+          <option value="education">Educacional</option>
+          <option value="social" selected>Social</option>
+          <option value="diy">Faça você mesmo</option>
+          <option value="charity">Caridade</option>
+          <option value="cooking">Cozinha</option>
+          <option value="relaxation">Relaxar</option>
+          <option value="music">Musica</option>
+          <option value="recreational">Recreativo</option>
+          <option value="busywork">busywork</option>
+        </select>
+
+        <br /><br />
+        <label for="participantesNum"
+          >Numero de participantes envolvidos pela atividade</label
+        >
+        <input
+          class="enlarge-full"
+          id="participantesNum"
+          name="participants"
+          type="number"
+          min="1"
+          value="1"
+        />
+        <br />
+        <br />
+
+        <div class="row">
+          <label for="precoMin">Custo da atividade</label>
+          <div class="column">
+            <input
+              class="enlarge-half"
+              id="precoMin"
+              name="minprice"
+              type="number"
+              min="0"
+              max="100"
+              placeholder="Preço mínimo"
+            />
+          </div>
+          <div class="columnt">
+            <span> <= </span>
+          </div>
+          <div class="column">
+            <input
+              class="enlarge-half"
+              id="precoMax"
+              name="maxprice"
+              type="number"
+              min="0"
+              max="100"
+              placeholder="Preço máximo"
+            />
+          </div>
+        </div>
+
+        <div class="row">
+          <label for="acessMin">Nível de acessibilidade:</label>
+          <div class="column">
+            <input
+              class="enlarge-half"
+              id="acessMin"
+              name="minaccessibility"
+              type="number"
+              min="0"
+              max="100"
+              placeholder="Acessibilidade minínima esperada"
+            />
+          </div>
+          <div class="columnt">
+            <span> <= </span>
+          </div>
+          <div class="column">
+            <input
+              class="enlarge-half"
+              id="acessMax"
+              name="maxaccessibility"
+              type="number"
+              min="0"
+              max="100"
+              value="100"
+            />
+          </div>
+        </div>
+        <p id="info">
+          *Acessibilidade e Preço são fatores definidos pela API pública
+          consultada. A escala varia de 0 a 100, de modo que, uma busca com
+          preço mínimo 0 indica que será possível obter uma atividade gratuita.
+          De maneira análoga, a acessibilidade, quanto mais próximo de 0, mais
+          acessível.
+          <br />
+          *Caso esses valores não forem especificados eles serão desconsiderados
+          na busca. Ou seja, considerará apenas os campos: "Tipo de atividade" e
+          "Número de participantes envolvidos".
+        </p>
+
+        <input type="submit" value="Enviar" />
+      </form>
+    </div>
+
+    <% if(locals.atividade){ %>
+    <p>atividade : <%= atividade %> (<%= atividadeTraduziza %>)</p>
+    <p>tipo: <%= tipo %> (<%= tipoTraduzido %>)</p>
+    <p>participantes: <%= participantes %></p>
+    <p>preco: <%= preco %></p>
+    <p>link: <%= link %></p>
+    <p>acessibilidade: <%= acessibilidade %></p>
+    <% } else if (locals.erro){ %>
+    <h1>Ocorreu um erro inesperado, tente novamente.</h1>
+    <% } %>
+  </body>
+</html>
