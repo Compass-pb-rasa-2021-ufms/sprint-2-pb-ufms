@@ -35,11 +35,13 @@ $ heroku open -a 'nome-do-app-criado'
 
 ## Buildando a imagem
 ```
-$ docker build -t 'nome-da-img' . 
-$ docker run -it -p 'porta':3000 'nome-da-img'
+$ docker build -f "nome-dockerfile' -t 'nome-da-img' . (Especifique o diretório) 
+$ docker run -d -p 'porta-fora':'porta-container' 'nome-da-img'
 ```
 
 ## Bibliotecas utilizadas
 - express
 - nodemon
 - cors
+- mongoose
+- body-parser

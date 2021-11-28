@@ -1,0 +1,26 @@
+version: "3"
+
+# Listando os services
+services:
+  api-harry:
+    build:
+      dockerfile: ./node.dockerfile
+      context: .
+    image: api-harry
+    container_name: api-harry
+    ports:
+      - "3000:3000" 
+    networks: 
+      - production-network
+    depends_on:
+      - mongodb
+  # Nesse caso a api deve ser comunicar com mongo através dos nomes
+  mongodb:
+    image: mongo
+    networks:
+      - production-network
+
+# Definindo as config da rede
+networks:
+  production-network:
+    driver: bridge
