@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <link href="/css/history.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <a href="javascript:history.back()">Voltar</a>
+    <a href="/">Home</a>
+
+
+    <!-- https://stackoverflow.com/questions/11359291/prettify-json-array-in-javascript -->
+    <div class="container">
+      <h1>Atividade encontrada</h1>
+        <% newListItems.forEach(function(item,index){ %>
+            <li> Data: <%= item.date  %>  API  <%= item.name  %>
+              <button class="expand" data-button-show> Expand </button>
+              <pre class="hidden"> <%= JSON.stringify(item, null, '\t') %> 
+                <button onclick="deleteElement(this)" class="delete" data-button-show> Delete </button>
+              
+              </pre>
+              </br>
+            </li>
+            <hr>
+        <% }) %>
+     
+    </div>
+  </body>
+
+  <script type="text/javascript">
+    // Get all the buttons in a node list
+    var theButtons = document.querySelectorAll("button.expand");
+    
+    // Turn node list into a JS Array
+    var buttonArray = Array.from(theButtons);
+
+    // Loop over the buttons and give each its click event handler
+    buttonArray.forEach(function(button){
+    button.addEventListener("click", function(){ 
+        // We will pass a reference to the current button to the function
+        myFunction(this); 
+    });
+    });
+
+    // The function now expects to be passed a reference to the button that was clicked
+    function myFunction(element) { 
+    // Get a reference to div that follows the button and then search that div
+    // for the first pre element inside of it:
+    
+    var answer = element.nextElementSibling;
+    
+    // All we need to do is toggle the visibility of that pre element
+    answer.classList.toggle("hidden");
+    }
+
+
+
+    
+    function deleteFetch(id){
+      fetch(`/history${id}`, { method: 'DELETE', })
+      .then(()=> window.location.reload())
+    }
+
+    function deleteElement(element){
+      console.log('aqui')
+      console.log(element)
+      console.log(element.parentElement.textContent)
+      console.log('a', element.parentNode.childNodes[0])
+      
+      // utilizadno essa sintaxe para obter apenas o elemento pai, pois uma seleção diferente
+      // como element.parentElement.textContent resulta não só no texto do pai, mas também do filho
+      // comportamento que não é interessante, pois transformarei para json
+      const prevTag = element.parentNode.childNodes[0].textContent
+      const json = JSON.parse(prevTag)
+      console.log(json['_id'])
+
+    //   var request = new XMLHttpRequest();
+    //   request.open("DELETE", `/history${json['_id']}`, true);
+    //   request.onload = function () {
+    //     console.log('testeee', request.status);
+    //     if(request.readyState === XMLHttpRequest.DONE || request.status === 204) {
+    //       console.log('carai')
+    //     }
+    // };
+    //   request.send()
+
+      deleteFetch(json['_id'])
+      
+
+
+      // window.location.reload()
+}
+</script>
+
+</html>

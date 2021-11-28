@@ -6,5 +6,24 @@ services:
       dockerfile: Dockerfile
     image: nodejs-sprintapp    
     container_name: nodejs-app
+    depends_on:
+        - mongodb
     ports: 
       - 3000:8080
+    networks: 
+      - prod
+
+  mongodb:
+      image: mongo
+      container_name: db
+      ports:
+      - 27017:27017
+      networks:
+          - prod
+      environment:
+        MONGO_INITDB_ROOT_USERNAME: root
+        MONGO_INITDB_ROOT_PASSWORD: root
+        MONGO_INITDB_DATABASE: test
+networks: 
+    prod:
+        driver: bridge

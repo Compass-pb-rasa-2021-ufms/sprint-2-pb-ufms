@@ -31,4 +31,16 @@ function treatsBoredApiInput(searchParams) {
 	return objectValue
 }
 
-module.exports = { treatsBoredApiInput }
+function formatDate(date) {
+    dformat = [date.getMonth()+1,
+               date.getDate(),
+               date.getFullYear()].join('/')+' '+
+              [date.getHours(),
+				date.getMinutes(),
+				date.getSeconds()].join(':');
+
+	console.log('dformat', dformat)
+	return dformat
+}
+
+module.exports = { treatsBoredApiInput, formatDate }
