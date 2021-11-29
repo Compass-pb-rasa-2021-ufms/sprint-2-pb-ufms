@@ -166,7 +166,9 @@
 <div id="wrapper"></div>
 
 <script>
+        
 
+        //retornar dados por favoritos
         async function render(item){
 
                 const wrapper = document.getElementById('wrapper')
@@ -184,7 +186,7 @@
                 imgpod.classList.add('img_pod')
                 imgpod.appendChild(image)
 
-
+                // manipulando a DOM para inserir elementos com dados retornados
                 const containercopy = document.createElement('div')
                 containercopy.classList.add('container_copy')
 
@@ -217,6 +219,8 @@
 
             })
         }
+
+        //retornar dados salvos
        async function getSalvos(){
                 
                 const response = await fetch('https://web-danielyudicarvalho.cloud.okteto.net/saved',{

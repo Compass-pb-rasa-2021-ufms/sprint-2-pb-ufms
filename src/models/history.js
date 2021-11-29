@@ -1,8 +1,4 @@
-const mongoose = require('mongoose')
-
-//estabelecendo a conexao
-mongoose.connect('mongodb://mongodb:27017')
-
+const mongoose = require("../database")  
 
 mongoose.Promise = global.Promise               
 
@@ -13,9 +9,15 @@ const historySchema = new mongoose.Schema({
     search:{
         type:String
     },
-    date: {
+    day: {
         type: String
     },
+    month:{
+        type:Number
+    },
+    year:{
+        type:Number
+    }
 })
 
 const History = mongoose.model('history', historySchema)

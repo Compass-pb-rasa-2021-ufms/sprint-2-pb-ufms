@@ -28,9 +28,28 @@
                 background: linear-gradient(to right,#2b32b2,#1488cc);
             }
 
+            .struct{
+                display: block;
+                margin: auto;
+            }
+
+            .block1{
+                display: block;
+            }
+    
+            .title{
+                text-align: center;
+            }
+
             #wrapper {
                 height: 100%;
                 height: 100vh;
+            }
+
+            #background{
+                background: #1488cc;
+                background: -webkit-linear-gradient(to right, #2b32b2, #1488cc);
+                background: linear-gradient(to right,#2b32b2,#1488cc);
             }
 
             .blog_post {
@@ -89,17 +108,20 @@
             }
 
             .btn_primary {
-                border: none;
-                outline: none;
-                background: linear-gradient(90deg, #ff9966, #ff5e62);
-                padding: 1.5rem 2rem;
-                border-radius: 50px;
-                color: white;
-                font-size: 1.2rem;
-                box-shadow: 1px 10px 2rem rgba(255, 94, 98, 0.5);
-                transition: all .2s ease-in;
-                text-decoration: none;
-            }
+                    border: none;
+                    outline: none;
+                    margin-left: 10px;
+                    width: 200px;
+                    padding: 1.5rem 2rem;
+                    border-radius: 25px;
+                    color: white;
+                    font-size: 1.2rem;
+                    box-shadow: 1px 10px 2rem rgba(255, 94, 98, 0.5);
+                    transition: all .2s ease-in;
+                    text-decoration: none;
+                    background-color: #045de9;
+                    background-image: linear-gradient(315deg, #045de9 0%, #09c6f9 74%);
+                }
             .btn_category {
                 border: none;
                 outline: none;
@@ -113,6 +135,7 @@
                 transition: all .2s ease-in;
                 text-decoration: none;
             }
+
 
             .btn_keyword{
                 border: none;
@@ -159,18 +182,34 @@
             }
 
 
+
+
     </style>
 </head>
 
-<h1>Histórico</h1>
-<div id="wrapper"></div>
-
+<body id="background">
+    <div class="struct">
+        <div class="block1">
+            <div class="title">
+                <h1><span>Histórico</span></h1>
+            </div>
+        </div></br>
+        <div class='container-button'>
+            <button class="btn_primary" onclick="getCategoryHistory()">Categoria</button>
+            <button class="btn_primary" onclick="getKeywordHistory()">Palavra-Chave</button>
+            </div>
+        <div id="wrapper"></div>
+    </div>
+</body>
 <script>
 
 
+// retornar dados pelo histórico
 async function render(item){
     const wrapper = document.getElementById('wrapper')
     wrapper.innerHTML = ''
+
+
 
     !!item && item.map(hist=>{
         const wrapper = document.getElementById('wrapper')
@@ -181,25 +220,40 @@ async function render(item){
         containercopy.classList.add('container_copy')
 
         const date = document.createElement('h3')
-        date.innerText = String(hist.date)
+        date.innerText = `${String(hist.day)}/${String(hist.month)}/${String(hist.year)} `
 
-        const title = document.createElement('h1')
-        title.innerText = String(hist.field)
 
         const description = document.createElement('p')
         description.innerText = String(hist.search)
 
         containercopy.appendChild(date)
-        containercopy.appendChild(title)
         containercopy.appendChild(description)
 
         blogpost.appendChild(containercopy)
         wrapper.appendChild(blogpost)
     })
 }
-async function getSalvos(){
+        //retornar histórico por categoria
+         async function getCategoryHistory(){
                 
-                const response = await fetch('https://web-danielyudicarvalho.cloud.okteto.net/history-saved',{
+                const response = await fetch('https://web-danielyudicarvalho.cloud.okteto.net/history-category',{
+                    method: 'POST',
+                    headers: { 
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                   
+                })
+                const result = await response.json()
+                render(result)
+                console.log(result)
+        
+        }
+        
+        //retornar histórico por palavra-chave
+        async function getKeywordHistory(){
+                
+                const response = await fetch('https://web-danielyudicarvalho.cloud.okteto.net/history-keyword',{
                     method: 'POST',
                     headers: { 
                         'Accept': 'application/json',
@@ -213,6 +267,5 @@ async function getSalvos(){
         
         }
 
-        getSalvos()
 </script>
 

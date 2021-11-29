@@ -5,6 +5,10 @@ services:
     build: .
     ports:
       - 8080:3000
+    environment:
+       - API_KEY=743db5d581db75b4108b77d5f629e39e
+       - MONGO_DB=mongodb://mongodb:27017
+
 
   mongodb:
     image: bitnami/mongodb:latest

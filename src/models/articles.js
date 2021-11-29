@@ -1,11 +1,6 @@
-const mongoose = require('mongoose')
-
-//estabelecendo a conexao
-mongoose.connect('mongodb://mongodb:27017')
-
-
-mongoose.Promise = global.Promise               
-
+const mongoose = require("../database")   
+        
+// schema de artigos salvos em favoritos
 const articlesSchema = new mongoose.Schema({
     author:{
         type:String

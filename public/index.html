@@ -273,7 +273,6 @@
                 <button class="btn_primary" onclick="getCategory('sports')">Esportes</button>
                 <button class="btn_primary" onclick="getCategory('science')">Ciência</button>
                 <button class="btn_primary" onclick="getCategory('entertainment')">Entretenimento</button>
-                <button class="btn_primary" onclick="getCategory('health')">Saúde</button>
                 <button class="btn_primary" onclick="getCategory('business')">Negócios</button>
                 <button class="btn_primary" onclick="getCategory('technology')">Tecnologia</button>
                 <button class="btn_primary" onclick="getCategory('general')">Geral</button>
@@ -382,7 +381,8 @@
                     method: 'GET',
                     headers: { 
                                 'Accept': 'application/json',
-                                'Content-Type': 'application/json'
+                                'Content-Type': 'application/json',
+                                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
                     },
                  
                     })
@@ -404,6 +404,7 @@
                     }),
                 })
 
+                let date = new Date()
                 const saved = await fetch('https://web-danielyudicarvalho.cloud.okteto.net/save-history',{
                     method: 'POST',
                     headers: { 
@@ -413,7 +414,9 @@
                     body: JSON.stringify({
                         'field':'category',
                         'search': String(category),
-                        'date':String(new Date())
+                        'day':date.getDate(),
+                        'month':date.getMonth(),
+                        'year':date.getFullYear()
                     }),
                 })
                 const result = await response.json()
@@ -430,13 +433,15 @@
                     method: 'POST',
                     headers: { 
                         'Accept': 'application/json',
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
                     },
                     body: JSON.stringify({
                         'keyword': String(key)
                     }),
                 })
                 console.log(response)
+                let date = new Date()
                 const saved = await fetch('https://web-danielyudicarvalho.cloud.okteto.net/save-history',{
                     method: 'POST',
                     headers: { 
@@ -446,7 +451,10 @@
                     body: JSON.stringify({
                         'field':'keyword',
                         'search': String(key),
-                        'date':String(new Date())
+                        'day':date.getDate(),
+                        'month':date.getMonth(),
+                        'year':date.getFullYear(),
+                        
                     }),
                 })
                 
