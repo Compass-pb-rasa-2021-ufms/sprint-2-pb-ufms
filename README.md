@@ -1,30 +1,32 @@
 # Avaliação Sprint 2 - Programa de Bolsas Compass.uol e UFMS
 
-Segunda sprint do programa de bolsas Compass.uol para formação em chatbot Rasa.
+## Autor
 
----
+Anália Beatriz
 
-## Execução
+## Definição
 
-- Utilizar o trabalho já entregue na Sprint 1 (https://github.com/Compass-pb-rasa-2021-ufms/sprint-1-pb-ufms/);
+O projeto em questão faz o consumo da API `https://pokeapi.co/api/v2/pokemon/`,
+que retorna os dados dos mais diversos Pokemons.
 
-- Armazenar as consultas no MongoDB;
+Há uma única página com a listagem de vários Pokemons, a qual além de visualizar
+o nome dos pokenmons, é possível ver tambéms seus tipos e uma foto do mesmo. Além disso,
+foi adicionado um campo de busca do Pokemon por nome.
 
-- Criar uma consulta ao histórico armazenado;
+## Desenvolvimento
 
-- Subir como uma aplicação no Okteto (https://cloud.okteto.com/). Dica: https://okteto.com/docs/samples/node/
+### Consumindo API no front-end:
 
----
+Ao realizar o GET na raiz da API, é retornado um arquivo par ao html, um arquivo .css e dois arquivos .js.
+Um desses arquivos é utilizado como uma lib de manipulaçlão do DOM, o dom.JS já o outro faz uso do mesmo para realizar a pesquisa e mudar a listagem dos Pokemons dinâmicamente. Essa mudança se dá no envio de um requisição GET a API na URL `"/searchPokemon/:pokemonName"`, ou na `"/pokemonsList"`. A primeira rota, faz um consulta do banco, MongoDB, buscando pelo nome informado, já a segunda lista todos os pokemons salvos no banco.
 
-## Entrega
+### Consumindo API no back-end:
 
-- Aceitar o convite do repositório da sprint-2-pb-ufms;
+O Backend se comunica com um banco MongoDB hospedado na Cloud. Lá já foi feita a inserção dos dados a consulta a API de Pokemons, e todos os dado exibidos pelo Frontend estão armazenados neste banco.
 
-- Criar uma branch no repositório com o formato nome-sobrenome (Exemplo: daniel-muller);
+## Como utilizar
 
-- Subir o trabalho na branch com um readme.md, documentando detalhes sobre como a avaliação foi desenvolvida e como utilizar o sistema.
+Há dois meios de visualizar a aplicação em execução:
 
-- O prazo de entrega é até às 13h do dia 29/11 no repositório do github (https://github.com/Compass-pb-rasa-2021-ufms/sprint-2-pb-ufms).
-
----
----
+1. Acessar o diretório da aplicação via terminal, e executar o comando `npm run start`. Isso irá roda a aplicação com o Nodemon e para visualiza-la, basta abrir no navegador na URL `http://localhost:3000`;
+2. Acessar o link da aplicação upada no Okteto: `https://app-analia-beatriz.cloud.okteto.net/`;
