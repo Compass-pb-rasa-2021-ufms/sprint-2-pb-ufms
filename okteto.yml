@@ -1,9 +1,0 @@
-name: sprint-2-pb-ufms
-autocreate: true
-image: okteto/node:14
-command: npm start
-sync:
-- .:/usr/src/app
-forward:
-- 8080:8080
-- 3000:3000
