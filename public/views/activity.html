@@ -43,8 +43,8 @@
           <td><%= acessibilidade %></td>
         </tr>
       </table>
-      <% } else if (locals.erro){ %>
-      <h1>Ocorreu um erro inesperado, tente novamente.</h1>
+      <% } else if (locals.naoEncontrado){ %>
+      <p>Nenhuma atividade com os parâmetros especificados foi encontrada, por favor tente novamente com outros parâmetros.</p>
       <% } %>
     </div>
   </body>

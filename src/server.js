@@ -65,6 +65,19 @@ app.get('/entediado', (req, res) => {
 app.get('/atividade', (req, res) => {
 	const resultadoTratado = utils.treatsBoredApiInput(req.query)
 	boredAPI.requestBoredAPI(resultadoTratado).then(function(data) {
+		/*
+		 * Caso boredAPI não encontre uma atividade com os parâmetros informados pelo usuário
+		 * ela retornará uma resposta contendo a string que informa tal acontecimento. Então, 
+		 * antes de qualquer processo de tramaneto de dados, realizo a busca por essa string na
+		 * resposta e, caso encontrada, renderizo a página informando o acontecido. Isso evita que
+		 * o processamento de dados continue em um cenário em que esses dados forem inexistentes
+		 * ou seja, quando nenhuma atividade for encontrada. 
+		*/
+		if (Object.values(data).indexOf('No activity found with the specified parameters') > -1){
+			res.render(path.join(__dirname, '..', '/public/views/activity.html'), { naoEncontrado: true });
+			return
+		}
+
 		var t1 = translateAPI.requestTranslateAPI(data.activity)
 		var t2 = translateAPI.requestTranslateAPI(data.type)
 		Promise.all([t1, t2]).then((values) => {
