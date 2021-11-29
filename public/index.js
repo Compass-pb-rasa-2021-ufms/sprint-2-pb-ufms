@@ -20,8 +20,8 @@
     const textToSearch = $searchText.value;
 
     const URL = textToSearch
-      ? `http://localhost:3000/searchPokemon/${textToSearch}`
-      : `http://localhost:3000/pokemonsList`;
+      ? `https://app-analia-beatriz.cloud.okteto.net/searchPokemon/${textToSearch}`
+      : `https://app-analia-beatriz.cloud.okteto.net/pokemonsList`;
 
     ajax.open("GET", URL, false);
 
