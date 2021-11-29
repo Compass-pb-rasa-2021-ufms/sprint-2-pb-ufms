@@ -20,14 +20,17 @@
 * Express
 * Axios 
 * Cors
-* Heroku
+* Mongoose
+* MongoDB
 > **Express**, framework para aplicação web utilizando Node.js, que permite o uso de métodos HTTP.
 
 > **Axios**, é um cliente HTTP que tem como base o uso de promisses para Node.js e navegador.
 
 > **Cors**, permite que aplicativos web executem em um domínio com permissão para acessar recursos de um servidor de outra origem.
 
-> **Heroku**, plataforma para hospedagem de serviços, o qual hospeda a aplicação.
+> **Mongoose**, framework para comunicação com o MongoDB.
+
+> **MongoDB**, banco de dados não-relacional utilizado para salvar as buscas realizadas na aplicação.
 
 # Como utilizar
 > A aplicação suporta o formato de ip: xxx.xxx.xxx.xxx, caso o valor informado seja inválido o retorno será **undefined**.
@@ -40,3 +43,4 @@ E seu respectivo retorno:
 
 ![Result](./readme_content/result.png)
 
+> Ao pressionar o botão "Histórico de Localizações" a aplicação retornará todos os endereços ip já consultados.

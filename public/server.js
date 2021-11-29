@@ -4,12 +4,12 @@ const server = express();
 
 const cors = require("cors");
 const api = require("./api");
-const factoryMongo = require("../mongo");
+const factoryMongo = require("./mongo");
 require("dotenv").config();
 
 //------------------------------------------------------
 server.use(cors());
-server.use(express.static("front"));
+server.use(express.static("public"));
 server.listen(3000);
 
 //MongoDB-----------------------------------------------
