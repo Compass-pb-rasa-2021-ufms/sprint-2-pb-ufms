@@ -1,0 +1,11 @@
+name: web
+command: bash
+sync:
+- .:/app
+forward:
+- 9229:9229
+- 3000:3000
+- 3001:3000
+environment:
+  - MONGO_DB=mongodb://mongodb:27017
+  - API_KEY=743db5d581db75b4108b77d5f629e39e'

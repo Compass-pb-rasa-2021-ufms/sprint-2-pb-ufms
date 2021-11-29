@@ -1,0 +1,462 @@
+
+<!DOCTYPE html>
+<html lang="pt">
+	<head>
+		<meta charset="utf-8"/>
+        <title>MediaStack</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <style>
+
+            @import url("https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap");
+
+            * {
+                padding: 0;
+                margin: 0;
+            }
+
+            html, body{
+                display: flex;
+                justify-content: center;
+                height: 100%;
+                font-family: 'Roboto', sans-serif;
+                font-size: 16px;
+            }
+
+            a{
+                margin-top:35px;
+            }
+    
+            .struct{
+                display: block;
+                margin: auto;
+            }
+    
+            .block1{
+                    display: inline;
+            }
+    
+            .title{
+                text-align: center;
+            }
+    
+            #background{
+                background: #1488cc;
+                background: -webkit-linear-gradient(to right, #2b32b2, #1488cc);
+                background: linear-gradient(to right,#2b32b2,#1488cc);
+            }
+    
+            .content{
+                padding: 10px 0;
+                margin: auto;
+                border-radius: 4px; 
+                border: solid 1px #7d72c6;
+                box-shadow: 1px 2px 5px rgba(0,0,0,.31);
+                display: flex;
+                width: 900px;
+                height: 300px;
+                justify-content: space-between;
+                margin: auto;
+            }
+    
+                .input{
+                    width: 100px;
+                    height: auto;
+                    flex-grow: 10;
+                    justify-content: center;
+                    align-items: center;
+                    display: flex;
+                }
+    
+                .form{
+                    width: 400px;
+                    display: flex;
+                    justify-content: space-between;
+                    margin: auto;
+                }
+    
+                .button{
+                    margin-left: 15px;
+                }
+    
+                .ip{
+                    flex-grow: 10;
+                }
+    
+                span{
+                    font-family: "Trebuchet MS", Helvetica, sans-serif;
+                    font-size: 70px;
+                    letter-spacing: -2.2px;
+                    word-spacing: 2px;
+                    color: #000000;
+                    font-weight: 700;
+                    text-decoration: none;
+                    font-style: normal;
+                    font-variant: normal;
+                    text-transform: uppercase;
+                }
+    
+                .response{
+                    margin: auto;
+                    border-radius: 5px; 
+                    background-color: whitesmoke;
+                    width: 100px;
+                    height: 100%;
+                    flex-grow: 10;
+                    margin-left: 15px;
+                    margin-right: 15px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    text-align: center;
+                }
+    
+                .test_style{
+                    font-family: Arial, Helvetica, sans-serif;
+                    font-size: 16px;
+                    letter-spacing: 1px;
+                    word-spacing: 2px;
+                    color: #000000;
+                    font-weight: 700;
+                    text-decoration: none solid rgb(68, 68, 68);
+                    font-style: normal;
+                    font-variant: small-caps;
+                    text-transform: none;
+                }
+
+                #wrapper {
+                    height: 100%;
+                    height: 100vh;
+                    margin-top: 75px;
+                }
+
+                .blog_post {
+                    position: relative;
+                    padding: 6rem 3rem 6rem 6rem;
+                    background: #fff;
+                    max-width: 400px;
+                    border-radius: 10px;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    box-shadow: 1px 1px 2rem rgba(0, 0, 0, 0.3);
+                }
+
+                .img_pod {
+                    max-height: 110px;
+                    max-width: 110px;
+                    height: 25px;
+                    width: 25px;
+                    background: linear-gradient(90deg, #ff9966, #ff5e62);
+                    z-index: -1;
+                    box-shadow: 1px 1px 2rem rgba(0, 0, 0, 0.3);
+                    border-radius: 15%;
+                    position: absolute;
+                    left: -50px;
+                    top: 10px;
+                    transform: translateY(-50%);
+                }
+
+                img {
+                    max-width:300px;
+                    max-height: 400px;
+                    position: relative;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    border-radius: 25%;
+                    box-shadow: 1px 1px 2rem rgba(0, 0, 0, 0.3);
+                }
+
+                h3 {
+                    margin: 0 0 0.5rem 0;
+                    color: #999;
+                    font-size: 1.25rem;
+                }
+
+                h1 {
+                    margin: 0 0 1rem 0;
+                    font-size: 2.5rem;
+                    letter-spacing: 0.5px;
+                    color: #333;
+                }
+
+                p {
+                    margin: 0 0 4.5rem 0;
+                    font-size: 1.5rem;
+                    color: #333;
+                }
+
+                .btn_primary {
+                    border: none;
+                    outline: none;
+                    margin-left: 10px;
+                    width: 200px;
+                    padding: 1.5rem 2rem;
+                    border-radius: 25px;
+                    color: white;
+                    font-size: 1.2rem;
+                    box-shadow: 1px 10px 2rem rgba(255, 94, 98, 0.5);
+                    transition: all .2s ease-in;
+                    text-decoration: none;
+                    background-color: #045de9;
+                    background-image: linear-gradient(315deg, #045de9 0%, #09c6f9 74%);
+                }
+                .btn_category {
+                    border: none;
+                    outline: none;
+                    width:200px;
+                    padding: 1.5rem 2rem;
+                    border-radius: 50px;
+                    color: white;
+                    font-size: 1.2rem;
+                    box-shadow: 1px 10px 2rem rgba(255, 94, 98, 0.5);
+                    transition: all .2s ease-in;
+                    text-decoration: none;
+                    background-color: #045de9;
+                    background-image: linear-gradient(315deg, #045de9 0%, #09c6f9 74%);
+                }
+
+                .btn_keyword{
+                    border: none;
+                    margin-top: 10px;
+                    outline: none;
+                    width:200px;
+                    height: 55px;
+                    padding: 1.5rem 2rem;
+                    border-radius: 25px;
+                    color: white;
+                    font-size: 1.2rem;
+                    box-shadow: 1px 10px 2rem rgba(255, 94, 98, 0.5);
+                    transition: all .2s ease-in;
+                    text-decoration: none;
+                    background-color: #045de9;
+                    background-image: linear-gradient(315deg, #045de9 0%, #09c6f9 74%);
+                }
+
+                .btn_primary:hover {
+                    box-shadow: 0px 5px 1rem rgba(255, 94, 98, 0.5);
+                }
+
+                .btn_category:hover {
+                    box-shadow: 0px 5px 1rem rgba(255, 94, 98, 0.5);
+                }
+
+                #key{
+                    border: 0;
+                    border-bottom: 2px solid #333;
+                    padding: 15px 0;
+                    display: block;
+                    font-size: 18px;
+                    font-family: 'Muli', sans-serif;
+                    width: 100%;
+                    transition: 0.1s ease-in;
+                }
+
+                #key:focus, #key:valid{
+                    border-bottom-color: darksalmon;
+	                outline: none;
+                }
+
+
+        </style>
+    </head>
+   
+
+    <body id="background">
+        <div class="struct">
+            <div class="block1">
+                <div class="title">
+                    <h1><span>MediaStack</span></h1>
+                </div>
+            </div>
+            <div id="categoria">
+                <button class="btn_primary" onclick="getCategory('sports')">Esportes</button>
+                <button class="btn_primary" onclick="getCategory('science')">Ciência</button>
+                <button class="btn_primary" onclick="getCategory('entertainment')">Entretenimento</button>
+                <button class="btn_primary" onclick="getCategory('health')">Saúde</button>
+                <button class="btn_primary" onclick="getCategory('business')">Negócios</button>
+                <button class="btn_primary" onclick="getCategory('technology')">Tecnologia</button>
+                <button class="btn_primary" onclick="getCategory('general')">Geral</button>
+            </div>
+             </br>
+             </br>
+            <div id="keywords">
+                <input type="text" id="key" placeholder="palavra-chave"/></br>
+                <button class="btn_primary" type="button" onclick="getKeyword()">Submit</button>
+                <a class="btn_primary" href='/lista'>Favoritos</a>
+                <a class="btn_primary" href='/history'>Histórico</a>
+            </div>
+
+            
+
+            <div id="wrapper">
+                
+            </div>
+        </div>
+
+
+        <script>
+
+            async function render(item){
+
+                const wrapper = document.getElementById('wrapper')
+                wrapper.innerHTML = ''
+
+                !!item && item.map(article=>{
+
+                    const wrapper = document.getElementById('wrapper')
+                 
+                    const blogpost = document.createElement('div')
+                    blogpost.classList.add('blog_spot')
+
+                    if(article.image){
+                        const imgpod = document.createElement('div')
+                        const image = document.createElement('img')
+                        image.src= article.image
+                        imgpod.classList.add('img_pod')
+                        imgpod.appendChild(image)
+                        blogpost.appendChild(image)
+                    }
+                   
+
+
+                    const containercopy = document.createElement('div')
+                    containercopy.classList.add('container_copy')
+
+                    const date = document.createElement('h3')
+                    date.innerText = new Date(article.published_at)
+
+                    const title = document.createElement('h1')
+                    title.innerText = String(article.title)
+
+                    const description = document.createElement('p')
+                    description.innerText = String(article.description)
+                  
+                    containercopy.appendChild(date)
+                    containercopy.appendChild(title)
+                    containercopy.appendChild(description)
+
+                    const readmore = document.createElement('a')
+                    readmore.href = String(article.url)
+                    readmore.target = '_blank'
+                    readmore.innerText = "Leia Mais"
+                    readmore.classList.add('btn_primary')
+
+                    const savebutton = document.createElement('button')
+                    savebutton.innerText = "salvar"
+                    savebutton.classList.add('btn_primary')
+
+                    savebutton.addEventListener("click",async function(){
+                        const response = await fetch('https://web-danielyudicarvalho.cloud.okteto.net/save',{
+                            method: 'POST',
+                            headers: { 
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                'title': String(article.title),
+                                'description': String(article.description),
+                                'image': String(article.image),
+                                'url': String(article.url),
+                                'published_at': String(article.published_at)
+                            }),
+                        })
+                const result = await response.json()
+                    })
+
+
+                   
+                    blogpost.appendChild(containercopy)
+                    blogpost.appendChild(readmore)
+                    blogpost.appendChild(savebutton)
+                    
+                    
+                
+                    wrapper.appendChild(blogpost)
+
+                })
+            }
+            async function getData(){
+            const id = document.getElementById('keywords')
+            const response = await fetch('https://web-danielyudicarvalho.cloud.okteto.net/noticias',{
+                    method: 'GET',
+                    headers: { 
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json'
+                    },
+                 
+                    })
+                        const result = await response.json()
+                        console.log(result)
+                        console.log(id)
+                    }
+
+            async function getCategory(category){
+                
+                const response = await fetch('https://web-danielyudicarvalho.cloud.okteto.net/categoria',{
+                    method: 'POST',
+                    headers: { 
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        'categoria': String(category)
+                    }),
+                })
+
+                const saved = await fetch('https://web-danielyudicarvalho.cloud.okteto.net/save-history',{
+                    method: 'POST',
+                    headers: { 
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        'field':'category',
+                        'search': String(category),
+                        'date':String(new Date())
+                    }),
+                })
+                const result = await response.json()
+                render(result)
+                console.log(result)
+        
+            }
+
+            async function getKeyword(){
+                const key = document.getElementById('key').value
+           
+		        console.log(key)
+                const response = await fetch('https://web-danielyudicarvalho.cloud.okteto.net/keyword',{
+                    method: 'POST',
+                    headers: { 
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        'keyword': String(key)
+                    }),
+                })
+                console.log(response)
+                const saved = await fetch('https://web-danielyudicarvalho.cloud.okteto.net/save-history',{
+                    method: 'POST',
+                    headers: { 
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        'field':'keyword',
+                        'search': String(key),
+                        'date':String(new Date())
+                    }),
+                })
+                
+		            document.getElementById('key').value = ''
+
+                    const result = await response.json()
+                    render(result)
+                  
+            }
+
+
+        </script>
+    </body>
