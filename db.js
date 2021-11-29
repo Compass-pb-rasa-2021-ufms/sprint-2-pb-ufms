@@ -1,10 +1,7 @@
 const mongoose = require('mongoose');
 
-function connectDB(){
-    mongoose.connect('mongodb+srv://leoliveira:senha123@weatherapi.g4oda.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',{
-        useNewUrlParser: true,
-        useUnifiedTopology:true,
-    });
+async function connectDB(){
+    await mongoose.connect('mongodb://root:root@weathertracker-db:27017');
 }
 
 module.exports = connectDB;
