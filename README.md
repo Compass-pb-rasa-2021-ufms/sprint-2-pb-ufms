@@ -1,30 +1,7 @@
-# Avaliação Sprint 2 - Programa de Bolsas Compass.uol e UFMS
+# Getting Started on Okteto with Node.js
 
-Segunda sprint do programa de bolsas Compass.uol para formação em chatbot Rasa.
+[![Develop on Okteto](https://okteto.com/develop-okteto.svg)](https://cloud.okteto.com/deploy?repository=https://github.com/okteto/node-getting-started)
 
----
+This example shows how to leverage [Okteto](https://github.com/okteto/okteto) to develop a Node Sample App directly in Kubernetes. The Node Sample App is deployed using raw Kubernetes manifests.
 
-## Execução
-
-- Utilizar o trabalho já entregue na Sprint 1 (https://github.com/Compass-pb-rasa-2021-ufms/sprint-1-pb-ufms/);
-
-- Armazenar as consultas no MongoDB;
-
-- Criar uma consulta ao histórico armazenado;
-
-- Subir como uma aplicação no Okteto (https://cloud.okteto.com/). Dica: https://okteto.com/docs/samples/node/
-
----
-
-## Entrega
-
-- Aceitar o convite do repositório da sprint-2-pb-ufms;
-
-- Criar uma branch no repositório com o formato nome-sobrenome (Exemplo: daniel-muller);
-
-- Subir o trabalho na branch com um readme.md, documentando detalhes sobre como a avaliação foi desenvolvida e como utilizar o sistema.
-
-- O prazo de entrega é até às 13h do dia 29/11 no repositório do github (https://github.com/Compass-pb-rasa-2021-ufms/sprint-2-pb-ufms).
-
----
----
+This is the application used for the [How to Develop and Debug Node.js Applications in Kubernetes](https://okteto.com/blog/how-to-develop-node-apps-in-kubernetes/) blog post.

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <title>Random card picker</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="title">
+            <h1>Yu-Gi-Oh!</h1>
+        </div>
+        <div class="buttons">
+            <form method="get">
+                <input type="button" value="Dark" class="btn">
+                <input type="button" value="Earth" class="btn">
+                <input type="button" value="Fire" class="btn">
+                <input type="button" value="Light" class="btn">
+                <input type="button" value="Water" class="btn">
+                <input type="button" value="Wind" class="btn">
+            </form>
+        </div>
+        <div class="container-result">
+            <div class="historico">
+                <p>Clique na carta para enviar pro deck</p>
+            </div>
+            <div id="carta" class ="result">
+                <p>Card placeholder</p>
+            </div>
+            <form action = "/cartas" method = "post">
+                <button class="form-button" data-form-button> Verifica historico </button>
+            </form>
+        </div>
+
+    </div>
+   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+    <script src="./script.js"></script>
+</body>
+</html>

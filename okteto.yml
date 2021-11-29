@@ -1,0 +1,10 @@
+name: yugi-app
+autocreate: true
+image: okteto/node:14
+command: npm start
+workdir: /usr/src/app
+sync:
+- .:/usr/src/app
+forward:
+- 8080:8080
+- 3000:3000
