@@ -9,16 +9,16 @@ services:
     environment:
       MONGO_INITDB_DATABASE: myFirstDatabase
       MONGO_INITDB_USERNAME: leoliveira
-      MONGO_INITDB_PASSWORD: senhainfalivel123
+      MONGO_INITDB_PASSWORD: senha123
   web:
     container_name: weathertracker
     restart: always
     build: .
     ports: 
       - "8080:8080"
-      - "3000:3000"
     links: 
       - db
     image: weathertracker
     depends_on:
       - db
+

@@ -25,7 +25,7 @@ async function getWeather(cities){
         const city = city_object.name;
 
         //ira esperar o request ser finalizado para continuar
-        const response_body = await request( `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=d8d804f8880a233cf44f1702711d91a7&lang=pt_br`); 
+        const response_body = await request( `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=bc602d2a6711c8005f4170be0d8fb944&lang=pt_br`); 
         weather_json = JSON.parse(response_body);
         const weather = {
             cityValue : city,
