@@ -41,7 +41,7 @@ router.get('/noticias', async (req, res) => {
 router.post('/categoria', async (req, res) =>{
     try {
         const {categoria} = req.body
-        const API_KEY = '743db5d581db75b4108b77d5f629e39e'
+      
         const { data:{data} } = await axios(`http://api.mediastack.com/v1/news?access_key=`+process.env.API_KEY+`&languages=pt&categories=${categoria}`)
         //extraindo os dados da api
         res.json(data)
@@ -57,7 +57,7 @@ router.post('/categoria', async (req, res) =>{
 router.post('/keyword', async (req, res) =>{
     try {
         const {keyword} = req.body
-        const API_KEY = '743db5d581db75b4108b77d5f629e39e'
+    
         const { data:{data} } = await axios(`http://api.mediastack.com/v1/news?access_key=`+process.env.API_KEY+`&languages=pt&keywords=${keyword}`)
         //extraindo os dados da api
         res.json(data)
