@@ -89,6 +89,9 @@ span{
     align-items: center;
     justify-content: center;
     text-align: center;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .test_style{
@@ -102,4 +105,26 @@ span{
     font-style: normal;
     font-variant: small-caps;
     text-transform: none;
+}
+
+.overflow-style{
+    white-space: initial;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    font-size: 12px;
+    letter-spacing: -2.2px;
+    word-spacing: 2px;
+    color: #000000;
+    font-weight: 12px;
+    text-decoration: none;
+    font-style: normal;
+    font-variant: normal;
+    text-transform: uppercase;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }

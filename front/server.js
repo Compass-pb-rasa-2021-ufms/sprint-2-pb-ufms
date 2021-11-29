@@ -1,10 +1,12 @@
 //Frameworks comunicacao--------------------------------
-const express = require("express");
+const express = require('express');
 const server = express();
+
 const cors = require("cors");
 const api = require("./api");
 const factoryMongo = require("../mongo");
 require("dotenv").config();
+
 //------------------------------------------------------
 server.use(cors());
 server.use(express.static("front"));
@@ -31,19 +33,14 @@ server.get("/:ip", async (req, res) => {
   }
 });
 //--------------------------------------------------------
-/*
-server.get("/log/"), function(req, res){
+server.post("/log", async (req,res) => {
   try{
-    console.log("OKAY");
-    //return res.send({teste: "ok"});
+    return res.send(await instance.consultAll());
   }catch(error){
-    console.log("ERRO NO BACK");
-    res.send({error: error.message});
+    return res.send({error: error.message});
   }
-};
-*/
-//---------------------------------------------------------
-
+});
+//--------------------------------------------------------
 function formatReturn(responseAPI){
   const format = {
     ip: responseAPI.query,
