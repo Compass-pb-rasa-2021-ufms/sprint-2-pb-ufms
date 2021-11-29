@@ -65,9 +65,6 @@ Foram utilizados:
   `yarn start`
 
 - Sirva com o HTTP-Server (pode ser necessário abrir outro terminal no diretório da aplicação)
-
-  ```
-  http-server
-  ```
+  `http-server`
 
 - Acesse em http://localhost:8080
