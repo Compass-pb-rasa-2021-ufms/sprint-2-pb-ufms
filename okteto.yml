@@ -2,7 +2,7 @@
 name: buscacep
 autocreate: true
 image: okteto/node:14
-command: npm start
+command: bash
 workdir: /usr/src/app
 sync:
 - .:/usr/src/app
