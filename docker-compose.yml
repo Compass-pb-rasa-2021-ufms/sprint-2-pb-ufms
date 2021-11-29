@@ -10,17 +10,13 @@ services:
     container_name: api-harry
     ports:
       - "3000:3000" 
-    networks: 
-      - production-network
-    depends_on:
-      - mongodb
-  # Nesse caso a api deve ser comunicar com mongo através dos nomes
-  mongodb:
+    links:
+      - mongo
+  # Criando o database através da imagem pronta
+  mongo:
     image: mongo
-    networks:
-      - production-network
-
-# Definindo as config da rede
-networks:
-  production-network:
-    driver: bridge
+    container_name: mongo
+    volumes:
+      - ./mongo/database 
+    ports:
+      - "27017:27017"

@@ -11,7 +11,7 @@
 
 ## Informações
 - API utilizada: http://hp-api.herokuapp.com/api/characters
-- Hospedagem: Heroku & Github
+- Hospedagem: Heroku & Github & Okteto
 - Front-end: Html & CSS
 - Back-end: NodeJS  
 
@@ -39,7 +39,14 @@ $ docker build -f "nome-dockerfile' -t 'nome-da-img' . (Especifique o diretório
 $ docker run -d -p 'porta-fora':'porta-container' 'nome-da-img'
 ```
 
-## Bibliotecas utilizadas
+## Subindo com o docker-compose
+```
+$ docker-compose build
+$ docker-compose up
+$ docker-compose down
+```
+
+## Dependências utilizadas
 - express
 - nodemon
 - cors
