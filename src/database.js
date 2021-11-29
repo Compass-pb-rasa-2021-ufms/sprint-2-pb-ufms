@@ -57,9 +57,10 @@ async function addToHistory(nameAPI, requestParametersSend, responseReceived) {
 async function showHistory(){
     /*
      * Busca todos os itens ja adicionados no histórico, filtrando o campo __v gerado automaticamente
-     * pelo banco quando um item é inserido.
+     * pelo banco quando um item é inserido e orenando de acordo com a data, do mais
+     * recente para o mais antigo.
     */
-    const historyItems = await History.find().select(['-__v']);
+    const historyItems = await History.find().select(['-__v']).sort({date: -1});
     
     // Formata a data dos itens retornados do banco
     const historyItemsFormated = historyItems.map((item) => {
