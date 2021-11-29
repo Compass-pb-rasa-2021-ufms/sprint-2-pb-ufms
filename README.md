@@ -6,16 +6,22 @@
 - [API MediaStack](https://mediastack.com/?utm_source=any-api&utm_medium=OwnedSites)
 
 
+## Tecnologias
+- NodeJs
+- MongoDB
+- Docker
+- Express
+- Okteto
+
 ## Acesso
 - ### Acesso local 
     - clone o repositório com `git clone`
-    - no diretório do projeto clonado, execute `npm install`
     - `docker-compose build`
     - `docker-compose run`
     - acesse em `http://localhost:8080`
 
 
-- ### Acesso a apĺicação
+- ### Acesso a aplicação
     - [Acesse a página aqui](https://web-danielyudicarvalho.cloud.okteto.net/)
 
 ## Utilização
