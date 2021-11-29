@@ -9,7 +9,7 @@ services:
     environment:
       MONGO_INITDB_DATABASE: myFirstDatabase
       MONGO_INITDB_USERNAME: leoliveira
-      MONGO_INITDB_PASSWORD: 'senhainfalivel123'
+      MONGO_INITDB_PASSWORD: senhainfalivel123
   web:
     container_name: weathertracker
     restart: always

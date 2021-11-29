@@ -19,14 +19,13 @@ const cityModel = mongoose.model('City', citySchema);
 // roda de forma assincrona um for para cada cidade e adiciona o clima em um objeto e o insere no weather_data que é um vetor e depois nos retorna o mesmo.
 async function getWeather(cities){
     const weather_data = [];
-    const key = process.env.KEY || 'd8d804f8880a233cf44f1702711d91a7';
 
     for(let city_object of cities){
 
         const city = city_object.name;
 
         //ira esperar o request ser finalizado para continuar
-        const response_body = await request( `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${key}&lang=pt_br`); 
+        const response_body = await request( `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=d8d804f8880a233cf44f1702711d91a7&lang=pt_br`); 
         weather_json = JSON.parse(response_body);
         const weather = {
             cityValue : city,
