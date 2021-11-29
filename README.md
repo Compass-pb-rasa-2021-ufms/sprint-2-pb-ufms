@@ -4,27 +4,34 @@ Segunda sprint do programa de bolsas Compass.uol para formação em chatbot Rasa
 
 ---
 
-## Execução
+## Link da aplicação
 
-- Utilizar o trabalho já entregue na Sprint 1 (https://github.com/Compass-pb-rasa-2021-ufms/sprint-1-pb-ufms/);
+[Weather Tracker no Heroku](https://sprint-api-compass.herokuapp.com/)
 
-- Armazenar as consultas no MongoDB;
+[Weather Tracker no Okteto](https://sprint-2-pb-ufms-leo0liveira.cloud.okteto.net/)
 
-- Criar uma consulta ao histórico armazenado;
+## Execução Local
 
-- Subir como uma aplicação no Okteto (https://cloud.okteto.com/). Dica: https://okteto.com/docs/samples/node/
+Use o gerenciador de pacotes [npm](https://nodejs.org/en/) para executar a aplicação.
 
----
+1. Faça a clonagem deste repositório em sua máquina.
+2. No seu terminal de preferência, execute os comandos abaixo:
+```
+npm start  
+npm run server
+```
 
-## Entrega
+## Usando o Weather Tracker
 
-- Aceitar o convite do repositório da sprint-2-pb-ufms;
+Com a aplicação rodando, siga o seguinte fluxo:
 
-- Criar uma branch no repositório com o formato nome-sobrenome (Exemplo: daniel-muller);
+* Busque pela cidade escolhida
+* Clique no botão buscar
 
-- Subir o trabalho na branch com um readme.md, documentando detalhes sobre como a avaliação foi desenvolvida e como utilizar o sistema.
+## Desenvolvimento
 
-- O prazo de entrega é até às 13h do dia 29/11 no repositório do github (https://github.com/Compass-pb-rasa-2021-ufms/sprint-2-pb-ufms).
+Vários problemas foram surgindo e era perseptivel que a aplicação necessitava de uma refatoração, para ser capaz de utilizar o express e as outras ferramentas para o desenvolvimento, feito isso fui capaz de utilizar as rotas da aplicação. Optei por utilizar o EJS invés do HTML pois com ele foi mais dinamico e prático para referenciar as informações e retorna-las ao usuario. Foi criada, também, uma classe db onde é feita a conexão entre o cluster provido pelo MongoDB Atlas, e minha aplicação.
 
----
----
+
+## API escolhida
+[Current Weather Data](https://openweathermap.org/current)
