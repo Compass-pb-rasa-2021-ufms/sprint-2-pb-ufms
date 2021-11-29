@@ -61,10 +61,13 @@ Foram utilizados:
 - Instale as dependências com:
   `yarn install`
 
-- Inicialize o servidor com
+- Inicialize o servidor com:
   `yarn start`
 
 - Sirva com o HTTP-Server (pode ser necessário abrir outro terminal no diretório da aplicação)
-  `http-server`
+
+  ```
+  http-server
+  ```
 
 - Acesse em http://localhost:8080
