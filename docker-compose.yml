@@ -1,0 +1,23 @@
+version: "3"
+services:
+  db:
+    image: mongo:latest
+    container_name: db
+    restart: always
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_DATABASE: sprint2-pb-compass
+      MONGO_INITDB_USERNAME: leonardolino
+      MONGO_INITDB_PASSWORD: '91525437'
+  web:
+    container_name: buscacep
+    restart: always
+    build: .
+    ports: 
+      - "8080:8080"
+    links: 
+      - db
+    image: buscacep
+    depends_on:
+      - db

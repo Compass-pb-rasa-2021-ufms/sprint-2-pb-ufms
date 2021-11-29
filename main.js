@@ -16,13 +16,13 @@ var Cep = mongoose.model('ceps', cepSchema);
 
 //Definição das possíveis portas de funcionamento no servidor local
 const port = 8080 || process.env.PORT || 3000;
-
+ 
 //Utilização do CORS
 app.use(cors());
 
 //Passa a pasta onde está a página HTML para o express
 app.use(express.static('public'));
-
+ 
 //Método get que consulta os dados desejados na API
 app.get('/:cep', async(req, res) => {
     //Recebe por parâmetro o CEP desejado

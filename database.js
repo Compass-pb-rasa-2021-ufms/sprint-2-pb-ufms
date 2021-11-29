@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 //Require para o dotenv que auxilia na segurança aos dados do BD
 require('dotenv').config()
-const BD_LINK = process.env.BD_LINK;
+const BD_LINK = `mongodb+srv://leonardolino:91525437@cluster0.bbr4t.mongodb.net/sprint2-pb-compass?retryWrites=true&w=majority`;
 
 //Função que realiza a conexão com o BD
 function connectToDatabase(){
