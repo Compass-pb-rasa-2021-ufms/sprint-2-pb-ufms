@@ -1,4 +1,4 @@
-name: sprint-2-pb-ufms
+name: weathertracker
 autocreate: true
 image: okteto/node:14
 command: bash
