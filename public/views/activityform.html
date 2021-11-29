@@ -2,49 +2,8 @@
 <html>
   <head>
     <link href="/css/activityform.css" rel="stylesheet" type="text/css" />
-
-    <script>
-      var errorCount = 0;
-      function validadeForm() {
-        var precoMin = document.getElementById("precoMin");
-        var precoMax = document.getElementById("precoMax");
-        var acessMin = document.getElementById("acessMin");
-        var acessMax = document.getElementById("acessMax");
-
-        // verifica se o preço minimo é realmente menor que o preço máximo
-        if (precoMin) {
-          if (precoMax && precoMin.value > precoMax.value) {
-            if (errorCount > 2) {
-              precoMin.value = precoMax.value;
-              return true;
-            }
-            precoMin.focus();
-            errorCount++;
-            alert(
-              "Atenção, o preço mínimo não pode ser maior que o preço máximo"
-            );
-            return false;
-          }
-        }
-
-        // verifica se a acessibilidade mínima é realmente menor que a acessibilidade máxima
-        if (acessMin) {
-          if (acessMax && acessMin.value > acessMax.value) {
-            if (errorCount > 2) {
-              acessMin.value = 0;
-              return true;
-            }
-            acessMin.focus();
-            errorCount++;
-            alert(
-              "Atenção, a acessibilidade mínima não pode ser maior que a acessibilidade máxima"
-            );
-            return false;
-          }
-        }
-        return true;
-      }
-    </script>
+    <link rel="icon" type="image/png" href="/images/timeIcon.png"/>
+    <script src="/js/validForm.js"></script>
   </head>
   <body>
     <a href="/">Home</a>
@@ -153,7 +112,7 @@
               type="number"
               min="0"
               max="100"
-              value="100"
+              placeholder="Acessibilidade minínima esperada"
             />
           </div>
         </div>

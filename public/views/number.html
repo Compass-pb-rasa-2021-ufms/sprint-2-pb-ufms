@@ -2,29 +2,7 @@
 <html>
   <head>
     <link href="/css/number.css" rel="stylesheet" type="text/css" />
-
-    <script>
-      var errorCount = 0;
-
-      function isInt(n) {
-        return n % 1 === 0;
-      }
-      function validadeForm() {
-        var number = document.getElementById("numInput");
-        if (number) {
-          if (errorCount > 2) {
-            number.value = Math.floor(number.value);
-            return true;
-          }
-          if (!isInt(number.value)) {
-            alert("O número informado deve ser um inteiro");
-            return false;
-          }
-        }
-        return true;
-      }
-    </script>
-
+    <link rel="icon" type="image/png" href="/images/timeIcon.png"/>
     <title>Numeros</title>
   </head>
   <body>

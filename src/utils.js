@@ -31,16 +31,15 @@ function treatsBoredApiInput(searchParams) {
 	return objectValue
 }
 
-function formatDate(date) {
-    dformat = [date.getMonth()+1,
-               date.getDate(),
-               date.getFullYear()].join('/')+' '+
-              [date.getHours(),
-				date.getMinutes(),
-				date.getSeconds()].join(':');
 
-	console.log('dformat', dformat)
-	return dformat
+/*
+ * Método que realiza a conversão do horario salvo no banco (tipo Date) 
+ * em um formato "dd/mm/yyyy - hh:mm:ss" 
+ */ 
+function formatDate(date) {
+    const dateFormated = [date.getMonth()+1, date.getDate(),date.getFullYear()].join('/') + ' - ' +
+              	   		 [date.getHours(), date.getMinutes(), ("0" + date.getSeconds()).slice(-2)].join(':');
+	return dateFormated
 }
 
 module.exports = { treatsBoredApiInput, formatDate }

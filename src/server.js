@@ -1,7 +1,6 @@
-const express = require('express');									// podemos usar o proprio express para fazer isso
+const express = require('express');
 const app = express();
 const path = require('path')
-const { MongoClient } = require('mongodb')
 
 // APIs
 const numbersAPI = require('./apis/numbersAPI');
@@ -10,7 +9,6 @@ const boredAPI = require('./apis/boredAPI');
 
 // database
 const mongo = require('./database');
-
 
 // utils
 const utils = require('./utils');
@@ -42,7 +40,7 @@ app.get('/numero', (req, res) => {
 				}
 				
 				res.render(path.join(__dirname, '..', '/public/views/number.html'), responseObj);
-				mongo.addToHistory('Numbero', { numero: req.query.numero},  responseObj)
+				mongo.addToHistory('numbersAPI', { numero: req.query.numero},  responseObj)
 			
 			})
 		}).catch(err => console.log(err));
@@ -84,7 +82,7 @@ app.get('/atividade', (req, res) => {
 			res.render(path.join(__dirname, '..', '/public/views/activity.html'), responseObj);
 
 			// salva no banco
-			mongo.addToHistory('Atividade', resultadoTratado, data)
+			mongo.addToHistory('boredAPI', resultadoTratado, data)
 		}).catch(err => console.log(err))
 	})
 });
@@ -93,27 +91,19 @@ app.get('/', (req, res) => {
 	res.sendFile(path.join(__dirname, '..', 'public/views/index.html'));
 });
 
-
-
-
+// Rota que retorna a página de histórico de requisições
 app.get('/history', (req, res) => {
 	list = mongo.showHistory()
 	list.then((item) => {
 		res.render(path.join(__dirname, '..', '/public/views/history.html'), { newListItems : item } );
 	})
-	
-
 });
 
-
-
+// Rota que deleta um item da página de histórico de requisições
 app.delete('/history:id', async (req, res) => {
-	console.log(req.params['id'])
-
 	if(req.params) {
 		const isDeleted = await mongo.deleteFromHistory(req.params['id'])
 		if (isDeleted) {
-			console.log('test')
 			res.sendStatus(204)
 			return
 		}
@@ -121,35 +111,8 @@ app.delete('/history:id', async (req, res) => {
 	res.sendStatus(404)
 });
 
-
-/////////////////////// CONNECT MONGODB //////////////////////////
-
-
-// async function connectMongodb() {
-// 	const uri = "mongodb://root:root@localhost:27017/authSource=dbWithUserCredentials"
-
-// 	// criando uma isntância do mongo client
-// 	const client = new MongoClient(uri)
-// 	try {
-// 		await client.connect()
-// 		console.log('conectou')
-// 	} catch (error){
-// 		console.log(error)
-// 	} finally {
-// 		await client.close()
-// 	}
-
-// }
-
-// connectMongodb().catch(console.error)
-
-mongo.main().catch(err => console.log(err));
-
-
-//////////////////////////////////////////////////////////////////////
-
-
 const port = process.env.PORT || 8080;
 app.listen(port, () => {
   console.log('Server rodando');
+  mongo.connectToMongo()
 });

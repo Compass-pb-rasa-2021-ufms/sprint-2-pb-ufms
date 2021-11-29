@@ -1,18 +1,5 @@
-table {
-  border-collapse: collapse;
-  width: 100%;
-}
-
-th, td {
-  text-align: left;
-  padding: 8px;
-  font-size: 14pt;
-}
-
-tr:nth-child(even) {background-color: #f2f2f2;}
-
 div.container {
-  border-radius: 1px; 
+  border-radius: 1px;
   padding: 20px;
   margin: auto;
   width: 90%;
@@ -20,17 +7,54 @@ div.container {
   padding: 16px;
 }
 
-/* This class will simply be added or removed to show/hide elements */
-/* All answers have this applied by default*/
+/* Exibe ou esconde os elementos do histórico de requisições */
 .hidden {
-  display:none;
+  display: none;
 }
 
-li { 
-  margin-bottom:10px;
+.red {
+  color: red;
+}
+
+.btnDetail {
+  width: 9%;
+  background-color: #04aa6d;
+  color: white;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+  align-items: center;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.btnDelete {
+  width: 9%;
+  background-color: #ff0000;
+  color: white;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+}
+
+/* efeito de clicado no botão */
+.btnDetail:active,
+.active {
+  top: 2px;
+  left: 1px;
+  box-shadow: none;
+  color: black;
+
+  background-color: #04aa5db4;
+}
+
+li {
+  margin-bottom: 10px;
   text-align: justify;
   border: 1px solid black;
   padding: 12px;
-  }
-
-  
+  list-style-type: none;
+}
