@@ -1,33 +1,44 @@
-const lista = document.querySelector('[data-list]');
-const botaoOk = document.getElementById('okbutton'); 
+//Variável que recebe a lista da página HTML
+var lista = document.querySelector('[data-list]');
+
+/*Variável que recebe o botão OK da página na HTML e chamada do seu método ADDEVENTLISTENER para realizar a devida função quando é clickado.const*/ 
+botaoOk = document.getElementById('okbutton'); 
 botaoOk.addEventListener('click' , getContent);
 
+//Função que realiza o que o botão OK deseja.
 async function getContent() {
+  //Recebe o input da página principal
   let inputText = document.querySelector('[data-form-input]').value;
+  //Faz a validação desse INPUT
   if(inputText.length == 8 && /^[0-9]+$/.test(inputText)){
-    /*const response = await fetch('https://buscacep-compass.herokuapp.com/' + inputText);*/
-    const response = await fetch('http://localhost:3000/' + inputText);
+    //Recebe os dados da API em formato JSOn
+    const response = await fetch(inputText);
     const data = await response.json();
+    //Verifica se foi encontrado um erro, se sim, informa a mensagem de CEP inexistente
     if(data.hasOwnProperty('erro')){
       exibeMensagemErroInexistente();
     }else{
+      //Se não encontrar erro exibe na página os dados do CEP informado.
       preencheLista(data);
     }
   }else{
+    //Mensagem de CEP inválido que é exibida quando o valor válidado não está correto.
     exibeMensagemErroInvalido();
   }
+  //Limpa a caixa de texto que o usuário informa dados
   document.querySelector('[data-form-input]').value = "";
 }
 
-const preencheLista = (dados) => {
+//Método que chama todos os outros métodos necessários para preencher a lista com os dados
+function preencheLista(dados){
   const endereco = [];
-  const lista = document.querySelector('[data-list]');
   insereDadosArray(dados, endereco);
   zeraLista();
-  insereDadosList(lista, endereco);
+  insereDadosList(endereco);
 } 
 
-const insereDadosList = (lista, endereco) => {
+//Método que insere na lista todos os dados a partir do vetor de dados informado
+function insereDadosList(endereco){
   for(let i = 0; i < 10; i++){
     const tarefa = document.createElement('li');
     tarefa.classList.add('task');
@@ -37,6 +48,7 @@ const insereDadosList = (lista, endereco) => {
   }
 }
 
+//Percorre todos os dados do arquivo json inserindo devidamente no vetor endereço
 const insereDadosArray  = (dados, endereco) => {
   endereco.push("CEP: " + dados.cep);
   endereco.push("Logradouro: " + dados.logradouro);
@@ -50,28 +62,29 @@ const insereDadosArray  = (dados, endereco) => {
   endereco.push("SIAFI: " + dados.siafi);
 }
 
+//Limpa a lista da página tornando nulo todos os filhos dela
 function zeraLista(){
   for(let i = 0; i < 10; i++){
-    if(document.querySelector('[data-list]').lastChild != null){
-        document.querySelector('[data-list]').lastChild.remove();
+    if(lista.lastChild != null){
+        lista.lastChild.remove();
     }
   }
 }
 
-const exibeMensagemErroInvalido = () => {
-  const lista = document.querySelector('[data-list]')
+//Cria uma mensagem de erro quando o CEP é inválido, limpa a lista e exibe a mensagem
+function exibeMensagemErroInvalido(){
   const tarefa = document.createElement('li');
   const conteudo = `<p class="content">CEP INVALIDO</p>`;
-  zeraLista();
   tarefa.innerHTML = conteudo;
+  zeraLista();
   lista.appendChild(tarefa);
 }
 
-const exibeMensagemErroInexistente = () => {
-  const lista = document.querySelector('[data-list]')
+//Cria uma mensagem de erro quando o CEP é inexistente, limpa a lista e exibe a mensagem
+function exibeMensagemErroInexistente(){
   const tarefa = document.createElement('li');
   const conteudo = `<p class="content">CEP INEXISTENTE</p>`;
-  zeraLista();
   tarefa.innerHTML = conteudo;
+  zeraLista();
   lista.appendChild(tarefa);
 }
