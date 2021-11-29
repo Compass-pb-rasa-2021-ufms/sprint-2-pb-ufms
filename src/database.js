@@ -20,7 +20,7 @@ const History = mongoose.model('History', historySchema);
 // Realiza a conexão com o banco
 async function connectToMongo() {
 	try {
-        await mongoose.connect("mongodb://root:root@localhost:27017/");
+        await mongoose.connect("mongodb://root:root@mongodb:27017/");
         console.log('Conexão com o banco realizada com sucesso.')
     } catch (error) {
         console.log(error)
