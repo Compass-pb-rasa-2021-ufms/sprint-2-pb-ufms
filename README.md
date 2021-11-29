@@ -52,3 +52,4 @@ $ docker-compose down
 - cors
 - mongoose
 - body-parser
+- axios

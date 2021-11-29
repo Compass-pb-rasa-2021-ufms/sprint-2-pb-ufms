@@ -13,10 +13,10 @@ services:
     links:
       - mongo
   # Criando o database através da imagem pronta
-  mongo:
+  mongodb:
     image: mongo
-    container_name: mongo
+    container_name: mongodb
     volumes:
-      - ./mongo/database 
+      - ./mongodb 
     ports:
       - "27017:27017"

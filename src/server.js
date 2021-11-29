@@ -13,16 +13,11 @@ app.use(cors())
 // Definindo Front-End
 app.use(express.static("public")) 
 
-
-/*
 // Configurando MongoDB
 const bodyParser = require("body-parser")
 
 app.use(bodyParser.json()) // Traduzir as requisições para json
 app.use(bodyParser.urlencoded({ extended: false })) // Decodar os parametros via url
 
-// req == dados da requisicao | res == objeto utilizado para enviar resposta
-app.get("/mongodb", (req, res) => {
-    res.send("OK")
-})
-*/
+// Referenciando os controllers
+require('./controllers/projeto')(app)
