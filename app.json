@@ -1,0 +1,6 @@
+{
+  "name": "simple-lyrics-search",
+  "description": "A simple page to fetch lyrics from songs",
+  "image": "heroku/nodejs",
+  "addons": []
+}

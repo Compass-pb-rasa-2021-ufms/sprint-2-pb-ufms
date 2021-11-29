@@ -1,0 +1,9 @@
+name: faker3po
+autocreate: true
+image: okteto/node:14
+command: yarn start
+sync:
+  - .:/usr/src/app
+forward:
+  - 9229:9229
+  - 3000:3000

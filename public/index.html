@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="index.css" media="screen" />
+    <link
+      id="u-page-google-font"
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Chakra+Petch:700"
+    />
+    <title>Simple Lyrics Search</title>
+  </head>
+  <body>
+    <section class="main">
+      <h1>Simple Lyrics Search</h1>
+      <div class="form">
+        <input id="artist-name" type="text" placeholder="Artist's name" />
+        <input id="song-name" type="text" placeholder="Song's name" />
+        <button id="search-button">SEARCH</button>
+        <form method="POST" action="/recentsearches">
+          <button>Recent Searches</button>
+      </div>
+      </div>
+      <div id="response-box">
+        <p id="result-p">Your lyrics will show up here :) .</p>
+        </form>
+    </section>
+    <footer>
+      <p>
+        Simply enter the song's artist and name and voilà.
+        <br />
+        This page is powered by Lyrics.ovh, an Oracle Apiary API .
+      </p>
+      <a
+        href="https://lyricsovh.docs.apiary.io/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img src="./images/imageedit_4_4369027381.png" alt="Apiary" />
+      </a>
+    </footer>
+  </body>
+</html>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+<script src="index.js"></script>
