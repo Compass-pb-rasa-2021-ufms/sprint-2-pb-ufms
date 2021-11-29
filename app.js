@@ -29,21 +29,21 @@ const api = axios.create({
 
 //Usando Express como servidor
 const express = require("express");
-const server = express();
-server.use(express.static("public")); //Definindo a pasta public para elementos frontend
+const app = express();
+app.use(express.static("public")); //Definindo a pasta public para elementos frontend
 
 //Requisitando o CORS no servidor
 const cors = require("cors");
-server.use(cors());
+app.use(cors());
 
 const port = 8080 || process.env.PORT || 3000;
-server.listen(port),
+app.listen(port),
   function () {
     console.log("Server started.......");
   };
 
 //Fazendo a conexão com a API pelo método GET
-server.get("/:artist/:song", async (req, res) => {
+app.get("/:artist/:song", async (req, res) => {
   const { artist, song } = req.params;
 
   try {
@@ -53,7 +53,7 @@ server.get("/:artist/:song", async (req, res) => {
       artist: artist,
       song: song,
     };
-    DataModel.collection.insertOne(dadosDeBusca);
+    DataModel.collection.insertOne(dadosDeBusca); //Inserindo o dado no DB
     console.log(data);
     return res.send(data.lyrics);
   } catch (error) {
@@ -61,13 +61,15 @@ server.get("/:artist/:song", async (req, res) => {
   }
 });
 
-server.post("/recentsearches", (req, res) => {
-  DataModel.find({}, { _id: 0 })
-    .select("artist song")
+app.post("/recentsearches", (req, res) => {
+  DataModel.find({}, { _id: 0 }) //Encontrando os dados para listagem, excluindo a tag id
+    .select("artist song") //Selecionando apenas as tags artist e song, que é o que me interessa
     .exec((err, data) => {
+      //Executando a função
       if (err) {
         console.log(err);
       } else {
+        //Trazendo a resposta como JSON Stringificado, com a tag <pre> no HTML para melhor visualização
         res.send(`<pre>${JSON.stringify(data, null, "\t")}</pre>`);
       }
     });
