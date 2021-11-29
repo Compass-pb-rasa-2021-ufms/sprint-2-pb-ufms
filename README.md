@@ -67,4 +67,4 @@ Foram utilizados:
 - Sirva com o HTTP-Server (pode ser necessário abrir outro terminal no diretório da aplicação)
   `http-server`
 
-- Acesse em [http://localhost:8080]
+- Acesse em http://localhost:8080
