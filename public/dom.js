@@ -1,3 +1,4 @@
+//manipulação de elementos
 (function (win, doc) {
   "use strict";
 

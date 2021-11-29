@@ -26,7 +26,7 @@ export const getAppBody = (listPokemonsElements) => `
     </body> 
     </html>
     `;
-
+//uso do reduce para retorna uma string com todos os pokemons
 export const buildPokemonsElements = (pokemonsData) =>
   pokemonsData.reduce((accumulator, pokemon) => {
     const types = pokemon.types.map((typeInfo) => typeInfo.type.name);
