@@ -13,7 +13,7 @@ Ela possui uma página HTML simples, com dois formulários:
 ## Desenvolvimento
 
 ### Consumindo API no front-end: 
-No arquivo index.html, mais especificamente no script, é onde são realizada as funções do front-end. Utiliza o fetch para buscar os dados da URL informada (neste caso é `https://buscacep-mercuriolino.cloud.okteto.net` + os dados de input), se comunica com o back-end para pegar as informações da API, recebe os dados de volta , e transforma em um JSON, e chama o devido método para exibir eles para o usuário.
+No arquivo index.html, mais especificamente no script, é onde são realizada as funções do front-end. Utiliza o fetch para buscar os dados da URL informada (neste caso é `https://web-mercuriolino.cloud.okteto.net` + os dados de input), se comunica com o back-end para pegar as informações da API, recebe os dados de volta , e transforma em um JSON, e chama o devido método para exibir eles para o usuário.
 
 ###  Consumindo API no back-end: 
 No arquivo main.js utilizo o axios para buscar os dados na URL da API com o CEP recebido por argumento (`https://viacep.com.br/ws/CEP/json/`) e retorna eles para o front, escutando a porta informada pelo Okteto ou então pela porta padrão 8080.
@@ -38,6 +38,6 @@ Ainda no arquivo main.js porém no método `app.post` utilizamos o método `find
 ## Como utilizar
 Podemos utilizar a API de duas maneiras, sendo elas:
 1. Acessar o diretório da aplicação via terminal, utilizar o comando `npm start` e então abrir no navegador o `http://localhost:8080`
-2. Acessar o link da aplicação upada no Okteto: `https://buscacep-mercuriolino.cloud.okteto.net`
+2. Acessar o link da aplicação upada no Okteto: `https://web-mercuriolino.cloud.okteto.net`
 
 Ao acessar a página, basta inserir o CEP desejado no campo de texto disponível e clickar no botão Ok que a informação será retornada. Caso deseja consultar o log basta clickar no botão 'Log' que o usuário será redirecionado para outra página que exibe todos os dados do banco.
