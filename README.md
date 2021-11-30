@@ -3,11 +3,13 @@
 
 ## Acesso ao app
 - https://harrypotter-jpwakugawa.herokuapp.com/
+- https://api-harry-jpwakugawa.cloud.okteto.net/
 
 ## Harry Potter
 - Criador: João Paulo de Souza Wakugawa.
 - Projeto: Desenvolver um site que mostre diversos personagens de Harry Potter em um loop infinito permitindo que o usuário escolha a sua casa favorita.
 - Entre no app e veja a magia acontecer.
+- Você tem a opção de adicionar seu personagem favorito ao histórico.
 
 ## Informações
 - API utilizada: http://hp-api.herokuapp.com/api/characters
