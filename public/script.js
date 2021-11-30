@@ -1,6 +1,12 @@
 // Main function
 async function start() {
 	let casa = sessionStorage.getItem("house")
+
+	let historico = localStorage.getItem("historico")
+	if (historico == null) {
+		historico = localStorage.setItem("historico", JSON.stringify([]))
+	}
+
 	if(casa == null) {
 		casa = "gryffindor"
 	}
@@ -49,6 +55,21 @@ function showCharacter(lista, index) {
 	name.innerHTML = character.name
 	casa.innerHTML = character.house
 	dateOfBirth.innerHTML = character.dateOfBirth
+
+	// Definindo o personagem no escopo global
+	adicionado = character
+}
+
+var adicionado
+async function adicionar() {
+	let dados = localStorage.getItem("historico")
+	let historico =  JSON.parse(dados)
+
+	historico.push(adicionado)
+	console.log(adicionado)
+	console.log(historico)
+	sessionStorage.setItem("historico", historico)
+	alert("Personagem adicionado!")
 }
 
 function getRandomInt(min, max) {
@@ -100,6 +121,7 @@ function huffTheme()
 	optionsBox.style.background = "#60605C"
 	textBox.style.color = "black"
 }
+
 
 // Start
 window.onload = start()

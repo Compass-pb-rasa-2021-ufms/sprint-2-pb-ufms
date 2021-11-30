@@ -58,3 +58,19 @@ button {
     border: 3px solid black;
     border-radius: 10px;
 }
+
+#favoritos-btn {
+    position: absolute;
+    width: 120px;
+    height: 50px;
+    top: 5%;
+    right: 15%;
+}
+
+#escolher-btn {
+    position: absolute;
+    width: 100px;
+    height: 50px;
+    top: 20%;
+    left: 25%;
+}
