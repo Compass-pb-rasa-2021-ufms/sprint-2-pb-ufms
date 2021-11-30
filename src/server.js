@@ -1,17 +1,25 @@
-// Inicializando server
 const express = require("express")
+const bodyParser = require("body-parser")
+
 const app = express()
 
-// Definindo rota
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
+
+require("./controllers/router")(app)
+
 const port = process.env.PORT || 3000
 app.listen(port, () => { console.log("Server ON | Port: 3000") })
-
-// Permitindo conversa entre localhost 
-const cors = require("cors")
-app.use(cors())
 
 // Definindo Front-End
 app.use(express.static("public")) 
 
-// Referenciando os controllers
-require('./router')(app)
+
+/* 
+
+CORS ATRAPALHA A COMUNICACAO !
+
+const cors = require("cors")
+app.use(cors())
+
+*/
