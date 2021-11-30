@@ -27,7 +27,9 @@ async function start() {
 
 // Minor functions
 async function getLista(casa) {
-	try{	
+	try{
+		// Consumindo back-end no front-end
+		// const response = await fetch(`http://localhost:3000/${casa}`)
 		const response = await fetch(`https://hp-api.herokuapp.com/api/characters/house/${casa}`)
 		const lista = await response.json()
 		return lista

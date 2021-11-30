@@ -8,10 +8,12 @@ services:
       context: .
     image: api-harry
     container_name: api-harry
+    depends_on:
+      - mongodb
     ports:
       - "3000:3000" 
-    links:
-      - mongo
+    networks:
+      - prod
   # Criando o database através da imagem pronta
   mongodb:
     image: mongo
@@ -20,3 +22,13 @@ services:
       - ./mongodb 
     ports:
       - "27017:27017"
+    networks:
+      - prod
+    environment:
+        MONGO_INITDB_ROOT_USERNAME: root
+        MONGO_INITDB_ROOT_PASSWORD: root
+        MONGO_INITDB_DATABASE: test 
+
+networks: 
+    prod:
+        driver: bridge
