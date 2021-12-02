@@ -1,0 +1,99 @@
+<!--Esta interface possui apenas um backgroud estilizado com css e dois componentes que manipulam as informações
+sendo o botão input para envio do endereço IP, e o fieldReceiveData que recebe o resultado e agrega ao corpo do HTML-->
+<!DOCTYPE html>
+<html lang="pt">
+	<head>
+		<meta charset="utf-8"/>
+        <title>Where am I?</title>
+        <link rel="stylesheet" href="./style.css">
+        <link rel="icon" type="image/x-icon" href="./icon.png">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    </head>
+    <body id="background">
+        <div class="struct">
+            <div class="block1">
+                <div class="title">
+                    <h1><span>Where am I?</span></h1>
+                </div>
+            </div>
+            <div class="content">
+                <div class="input">
+                    <form class="form">
+                        <div class="ip">
+                          <input type="text" class="form-control" id="ip-input" placeholder="Digite o endereço IP de busca">
+                        </div>
+                        <div class="button">
+                            <button type="submit" class="btn btn-outline-dark" id="search-button">Localizar</button>
+                        </div>
+                    </form>
+                    <div class="button">
+                        <button type="submit" class="btn btn-outline-dark" id="log-button">Historico de Localizações</button>
+                    </div>
+                </div>
+                <div class="response">
+                    <p id="fieldReceiveData"></p>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+    <!--Não foi possível utilizar um arquivo externo, então as funcionalidades estão dispostas dentro da tag <script> abaixo-->
+    <script>
+        //const getData que lida com a rota get, responsável por enviar o valor do input para o backend
+        const getData = (e) => {
+            //preventDefault é responsavel por cancelar um evento sem afetar a propagação dele
+            e.preventDefault();
+            //stopPropagation evita a propagação do evento
+            e.stopPropagation();
+            //const ip recebe o valor do campo ip-input
+            const ip = document.getElementById("ip-input").value;
+            //Através do axios é realizado o get para a rota "http://localhost:8080/${ip}"
+            axios.get(`http://localhost:8080/${ip}`).then((response) => {
+                //a função dataResult() recebe o data do response, através do response.data
+                dataResult(response.data);
+            //Caso ocorra algum problema com a rota é gerado um erro no log do navegador
+            }).catch((error) => {
+                console.log("Erro na comunicação FRONT->BACK({ip}) - " + error);
+            });
+        };
+
+        //const searchButton recebe o botão search-button
+        const searchButton = document.getElementById("search-button");
+        //searchButton recebe um EventListener que ao clicar no botão ativa o const getData()
+        searchButton.addEventListener("click", getData);
+
+        //const returnData que lida com a rota post, responsável por receber a resposta do mongodb pelo backend
+        const returnData = (r) => {
+            //preventDefault é responsavel por cancelar um evento sem afetar a propagação dele
+            r.preventDefault();
+            //stopPropagation evita a propagação do evento
+            r.stopPropagation();
+            //Através do axios é realizado o post para a rota "http://localhost:8080/log"
+            axios.post(`http://localhost:8080/log`).then((response) =>{
+                //const prettyPrint recebe o response.data tratato com JSON.stringify
+                //esse tratamento é feito para melhor visualizar os resultados na tela
+                const prettyPrint = JSON.stringify(response.data, null, 4);
+                //document.body.innerHTML recebe a tag <p> com o stylefont "overflow-style" e após recebe a const prettyPrint
+                document.body.innerHTML = "<p class=\"overflow-style\">" + "<pre>" + prettyPrint + "</pre>" + "</p>";
+                //Caso ocorra algum problema com a rota é gerado um erro no log do navegador
+            }).catch((error) => {
+                console.log("Erro na comunicação FRONT->BACK(/log) - " + error);
+            });
+        };
+
+        //const logButton recebe o botão log-button
+        const logButton = document.getElementById("log-button");
+        //logButton recebe um EventListener que ao clicar no botão ativa o const returnData()
+        logButton.addEventListener("click", returnData);
+
+        //Função responsavel por tratar o retorno da API-Location
+        function dataResult(input){
+            document.getElementById('fieldReceiveData').innerHTML = "<span class=\"test_style\">" + "IP: " + input['ip'] + "<br>" +
+            "País: " + input['country'] + "<br>" +
+            "Cidade: " + input['city'] + "<br>" +
+            "Estado: " + input['regionName'] + "<br>" +
+            "Latitude: " + input['latitude'] + "<br>" +
+            "Longitude: " + input['longitude'] + "</span>";
+        };
+    </script>
+</html>
