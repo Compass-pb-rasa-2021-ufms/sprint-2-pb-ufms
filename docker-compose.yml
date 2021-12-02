@@ -1,0 +1,29 @@
+version: '3'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: node:latest  
+    container_name: nodejs
+    depends_on:
+        - mongodb
+    ports: 
+      - 3000:8080
+    networks: 
+      - prod
+
+  mongodb:
+      image: mongo:latest
+      container_name: db
+      ports:
+      - 27017:27017
+      networks:
+          - prod
+      environment:
+        MONGO_INITDB_ROOT_USERNAME: dezan
+        MONGO_INITDB_ROOT_PASSWORD: adm
+        MONGO_INITDB_DATABASE: myFirstDatabase
+networks: 
+    prod:
+        driver: bridge

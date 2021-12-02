@@ -47,8 +47,8 @@ sendo o botão input para envio do endereço IP, e o fieldReceiveData que recebe
             e.stopPropagation();
             //const ip recebe o valor do campo ip-input
             const ip = document.getElementById("ip-input").value;
-            //Através do axios é realizado o get para a rota "http://localhost:8080/${ip}"
-            axios.get(`http://localhost:8080/${ip}`).then((response) => {
+            //Através do axios é realizado o get para a rota "http://localhost:3000/${ip}"
+            axios.get(`/${ip}`).then((response) => {
                 //a função dataResult() recebe o data do response, através do response.data
                 dataResult(response.data);
             //Caso ocorra algum problema com a rota é gerado um erro no log do navegador
@@ -68,8 +68,8 @@ sendo o botão input para envio do endereço IP, e o fieldReceiveData que recebe
             r.preventDefault();
             //stopPropagation evita a propagação do evento
             r.stopPropagation();
-            //Através do axios é realizado o post para a rota "http://localhost:8080/log"
-            axios.post(`http://localhost:8080/log`).then((response) =>{
+            //Através do axios é realizado o post para a rota "http://localhost:3000/log"
+            axios.post(`/log`).then((response) =>{
                 //const prettyPrint recebe o response.data tratato com JSON.stringify
                 //esse tratamento é feito para melhor visualizar os resultados na tela
                 const prettyPrint = JSON.stringify(response.data, null, 4);

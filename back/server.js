@@ -16,11 +16,13 @@ const app = express();
 app.use(cors());
 //-------------------------------------------------------------------------------------------------------------------------
 
+app.use(express.static(path.join(__dirname, '..', '/front')));
+
 //MONGODB------------------------------------------------------------------------------------------------------------------
 //Instância do arquivo mongo.js responsável por fazer a comunicação com o banco de dados que armazena as buscas realizadas
 const factoryMongo = require("./mongo");
 //Instância do objeto factoryMongo que realizara todas as operações com o banco de dados
-const instance = factoryMongo("resultados", process.env.DATABASE_URL);
+const instance = factoryMongo("resultados", "mongodb+srv://dezan:adm@cluster0.mnvnq.mongodb.net/resultados?retryWrites=true&w=majority");
 //Inicializa a conexão com o mongodb
 instance.connectBD();
 //Verifica a conexão com o banco de dados após inicialização
@@ -28,10 +30,10 @@ instance.checkConnection();
 //-------------------------------------------------------------------------------------------------------------------------
 
 //ROTAS--------------------------------------------------------------------------------------------------------------------
-//Backend está escutando atráves do endereço: localhost:8080
-app.listen(process.env.PORT_BACK, process.env.HOST_BACK, () => {
+//Backend está escutando atráves da porta 8080
+app.listen(8080, () => {
   //Realiza um console.log informando onde a rota foi iniciada HOST_BACK:PORT_BACK
-  console.log(`Backend iniciado em: ${process.env.HOST_BACK}:${process.env.PORT_BACK}`);
+  console.log(`Backend iniciado na porta 8080`);
 });
 
 //Rota GET definida para receber o endereço IP passado via input no frontend
@@ -44,15 +46,24 @@ app.get('/:ip', async function (req, res) {
   //Caso a comunicação ocorra sem erro é retornado as informações para o front
   try{
     //Atribui a const data = retorno da API, que recebe await devido a necessidade da assíncronicidade
-    const {data} = await api.get(`${ip}`);
-    //Retorna o resultado como resposta para o front
-    return res.send(formatReturn(data));
+    if(await instance.consultData(ip) == null){
+      const {data} = await api.get(`${ip}`);
+      instance.insertData(instance.dataForMongo(data));
+      //Retorna o resultado como resposta para o front
+      return res.send(formatReturn(data));
+    }else{
+      return res.send(await instance.consultData(ip));
+    }
   //Caso ocorra algum problema
   }catch(error){
     console.log("Erro na comunicação ({ip})BACK->API - " + error);
     //O retorno para o front será a mensagem "Erro na comunicação BACK->API - " + o erro ocorrido
     res.send("Erro na comunicação BACK->API - " + error);
   }
+});
+
+app.get('/', async function (req, res){
+  res.sendFile(path.join(__dirname, '../front/index.html'));
 });
 
 //ROTA POST definida para receber o retorno do mongodb
