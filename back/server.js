@@ -6,7 +6,6 @@ const cors = require("cors");
 //Instância do arquivo api.js responsável por retornar os resultados obtidos atraves do endereço IP informado
 const api = require("./api");
 //dotev: responsável pelas variáveis de ambiente do projeto
-require("dotenv").config();
 //-------------------------------------------------------------------------------------------------------------------------
 
 //EXPRESS------------------------------------------------------------------------------------------------------------------
