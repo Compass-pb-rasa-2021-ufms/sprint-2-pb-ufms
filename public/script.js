@@ -2,11 +2,6 @@
 async function start() {
 	let casa = sessionStorage.getItem("house")
 
-	let historico = localStorage.getItem("historico")
-	if (historico == null) {
-		historico = localStorage.setItem("historico", JSON.stringify([]))
-	}
-
 	if(casa == null) {
 		casa = "gryffindor"
 	}
@@ -23,20 +18,14 @@ async function start() {
 		huffTheme()
 	}
 
-	const lista = await getLista(casa)
-
-	while(true) {
-		let random = getRandomInt(0, 10)
-		await new Promise(resolve => setTimeout(() => resolve(showCharacter(lista, random)), 3000))
-	}
+	const character = await getCharacter(casa)
+	showCharacter(character)
 }
 
 // Minor functions
-async function getLista(casa) {
+async function getCharacter(casa) {
 	try{
-		// Consumindo back-end no front-end
-		// const response = await fetch(`http://localhost:3000/${casa}`)
-		const response = await fetch(`https://hp-api.herokuapp.com/api/characters/house/${casa}`)
+		const response = await fetch(casa)
 		const lista = await response.json()
 		return lista
 	}
@@ -45,8 +34,7 @@ async function getLista(casa) {
 	}
 }
 
-function showCharacter(lista, index) {
-	let character = lista[index]
+function showCharacter(character) {
 	let image = document.querySelector("[data-img]")
 	let name = document.querySelector("[data-name]")
 	let casa = document.querySelector("[data-casa]")
@@ -55,27 +43,6 @@ function showCharacter(lista, index) {
 	name.innerHTML = character.name
 	casa.innerHTML = character.house
 	dateOfBirth.innerHTML = character.dateOfBirth
-
-	// Definindo o personagem no escopo global
-	adicionado = character
-}
-
-var adicionado
-async function adicionar() {
-	let dados = localStorage.getItem("historico")
-	let historico =  JSON.parse(dados)
-
-	historico.push(adicionado)
-	console.log(adicionado)
-	console.log(historico)
-	sessionStorage.setItem("historico", historico)
-	alert("Personagem adicionado!")
-}
-
-function getRandomInt(min, max) {
-	min = Math.ceil(min);
-	max = Math.floor(max);
-	return Math.floor(Math.random() * (max - min)) + min;
 }
 
 function setHouse(house) {

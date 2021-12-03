@@ -1,35 +1,66 @@
-const express = require("express")
-const bodyParser = require("body-parser")
-const Favorito = require("./models/favorito")
-
+const express = require('express')
 const app = express()
+const axios = require('axios')
+const mongoose = require ('mongoose')
 
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: false }))
-
-require("./controllers/router")(app)
-
+// Liberando a porta 3000
 const port = process.env.PORT || 3000
-app.listen(port, () => { console.log("Server ON | Port: 3000") })
+app.listen(port, () => {console.log("Server ON | Port: 3000")})
 
-// Definindo Front-End
-app.use(express.static("public")) 
+// Conectando ao BD
+const connectToDatabase = require('./database')
+connectToDatabase()
+
+const FavoritoSchema = new mongoose.Schema({
+    createdAt: {
+        type: Date,
+        default: Date.now,
+    }
+})
+
+const Favorito = mongoose.model("Favorito", FavoritoSchema)
+
+// Permitindo a comunicação
+const cors = require('cors')
+app.use(cors())
+
+// Servindo o front-end
+app.use(express.static('public'))
+ 
+app.get('/:house', async(req, res) => {
+    const { house } = req.params
+    try{
+        const { data } = await axios(`https://hp-api.herokuapp.com/api/characters/house/${house}`)
+        let random = getRandomInt(0, 10)
+        let character = data[random]
+
+        Favorito.collection.insertOne(character)
+
+        return res.json(character)
+    } catch (error){
+        console.log(error)
+    }
+})
 
 app.post('/favoritos', (req,res) =>{
-    //Caso o DB esteja vazio exibe esta mensagem
     if(Favorito.length == 0){
-        res.send("Nenhum personagem foi escolhido, pause seu personagem favorito na página principal.")
+        res.send("Nenhum personagem foi escolhido, escolha sua casa favorita na página principal!")
     } else{
-        //Se o DB não estiver vazio chama o método FIND para exibir os dados
         Favorito.find({}, (error, data) =>{
             if(error){
                 console.log(error)
             } else{
-                //Mostra na página todos os CEPs cadastrados no DB.
                 res.send('Personagens adicionados anteriormente: <br></br> <pre>' + 
                 JSON.stringify(data, null, '\t') + 
-                '</pre><br></br>Melhores mágicos de Hogwarts!');
+                '</pre><br></br>Melhores mágicos de Hogwarts!')
             }
         })
     }
 })
+
+// Função para gerar número random
+function getRandomInt(min, max) {
+	min = Math.ceil(min)
+	max = Math.floor(max)
+	return Math.floor(Math.random() * (max - min)) + min
+}
