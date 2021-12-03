@@ -9,6 +9,7 @@
 - Criador: João Paulo de Souza Wakugawa.
 - Projeto: Desenvolver um site que mostre diversos personagens de Harry Potter baseado na escolha de sua casa favorita.
 - Entre no app e veja a magia acontecer.
+- Você tem a opção de adicionar seu personagem favorito ao histórico.
 
 ## Informações
 - API utilizada: http://hp-api.herokuapp.com/api/characters
