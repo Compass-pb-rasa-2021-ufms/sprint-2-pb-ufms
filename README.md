@@ -1,5 +1,5 @@
 # Avaliação Sprint 2 - Programa de Bolsas Compass.uol e UFMS
-Segunda sprint do programa de bolsas Compass.uol para formação em chatbot Rasa.
+Avaliação da segunda sprint do programa de bolsas Compass.uol para formação em chatbot Rasa.
 
 ---
 
